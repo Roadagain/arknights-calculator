@@ -1,0 +1,8 @@
+{
+  "name": "arknights-calculator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Roadagain/arknights-calculator.git",
+  "author": "Roadagain <ringoh72@gmail.com>",
+  "license": "MIT"
+}
