@@ -7,5 +7,10 @@
   "license": "MIT",
   "dependencies": {
     "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.9",
+    "jest": "^26.2.2",
+    "ts-jest": "^26.1.4"
   }
 }
