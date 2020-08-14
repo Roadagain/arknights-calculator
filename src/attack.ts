@@ -1,11 +1,11 @@
 export type AttackBuff = {
-  readonly attackPlusPercentage: number
-  readonly attackPlusFixed: number
-  readonly damageBuff: number
-  readonly attackBuff: number
+  readonly percentageAddition: number
+  readonly fixedAddition: number
+  readonly damageIncrease: number
+  readonly percentageIncrease: number
 }
 
 export const buffedAttackValue = (base: number, buff: AttackBuff): number => {
-  const { attackPlusFixed, attackPlusPercentage, damageBuff, attackBuff } = buff
-  return (base * attackPlusPercentage + attackPlusFixed) * damageBuff * attackBuff
+  const { fixedAddition, percentageAddition, damageIncrease, percentageIncrease } = buff
+  return (base * percentageAddition + fixedAddition) * damageIncrease * percentageIncrease
 }
