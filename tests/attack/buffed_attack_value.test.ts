@@ -65,4 +65,19 @@ describe('最終攻撃力の計算', () => {
       expect(attack).toBe(expected)
     })
   })
+
+  describe('バフ全部盛り', () => {
+    const buff: AttackBuff = {
+      attackPlusPercentage: 1.9, // 不安定血漿 特化III
+      attackPlusFixed: 385, // ファイトソング 特化III 昇進2Lv80 信頼度ボーナス込み
+      damageBuff: 3, // 爆撃要請 特化III
+      attackBuff: 1.45 // 暗殺者 昇進2 潜在強化込み
+    }
+    const attackBase = 1175 // ファイヤーウォッチ 昇進2Lv80 信頼度ボーナス込み
+
+    it('個々のバフを考慮して攻撃力が計算される', () => {
+      const attack = buffedAttackValue(attackBase, buff)
+      expect(attack).toBe(11386.125) // ファイヤー
+    })
+  })
 })
