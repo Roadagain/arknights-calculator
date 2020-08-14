@@ -7,5 +7,5 @@ export type AttackBuff = {
 
 export const buffedAttackValue = (base: number, buff: AttackBuff): number => {
   const { attackPlusFixed, attackPlusPercentage, damageBuff, attackBuff } = buff
-  return Math.floor((base * attackPlusPercentage + attackPlusFixed) * damageBuff * attackBuff)
+  return (base * attackPlusPercentage + attackPlusFixed) * damageBuff * attackBuff
 }
