@@ -1,17 +1,17 @@
 import { buffedAttackValue, AttackBuff } from '../../src/attack'
 
-const attackBase = 500
-export const createAttackBuff = (buff: Partial<AttackBuff> = {}): AttackBuff => {
-  return {
-    percentageAddition: 1,
-    fixedAddition: 0,
-    damageIncrease: 1,
-    percentageIncrease: 1,
-    ...buff
-  }
-}
-
 describe('最終攻撃力の計算', () => {
+  const attackBase = 500
+  const createAttackBuff = (buff: Partial<AttackBuff> = {}): AttackBuff => {
+    return {
+      percentageAddition: 1,
+      fixedAddition: 0,
+      damageIncrease: 1,
+      percentageIncrease: 1,
+      ...buff
+    }
+  }
+
   describe('バフなしの場合', () => {
     it('基礎値がそのまま攻撃力になる', () => {
       const buff = createAttackBuff()
