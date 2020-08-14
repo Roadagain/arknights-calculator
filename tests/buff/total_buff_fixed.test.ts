@@ -17,8 +17,8 @@ describe('固定値バフのトータル値計算', () => {
 
   describe('バフが複数の場合', () => {
     it('各バフ値の総和がトータル値になる', () => {
-      const total = totalBuffFixed([100, 30, 50])
-      expect(total).toBe(180)
+      const total = totalBuffFixed([140, 200, 180])
+      expect(total).toBe(520)
     })
   })
 })
