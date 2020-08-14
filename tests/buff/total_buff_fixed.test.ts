@@ -1,4 +1,4 @@
-import { totalBuffFixed } from "../../src/buff"
+import { totalBuffFixed } from '../../src/buff'
 
 describe('固定値バフのトータル値計算', () => {
   describe('バフがない場合', () => {
