@@ -9,15 +9,28 @@ describe('物理ダメージ計算', () => {
   }
 
   describe('計算結果が最低ダメージ以上になる場合', () => {
-    const attack = 500
+    const attack = 550
     const defence = 300
 
     describe('バフなしだった場合', () => {
+      const buff = createDamageBuff({})
+
       it('攻撃力-防御力 がダメージになる', () => {
-        const buff = createDamageBuff({})
         const expected = attack - defence
         const damage = physicalDamage(attack, defence, buff)
         expect(damage).toBe(expected)
+      })
+
+      it('小数点以下は四捨五入される', () => {
+        const attackFloored = 500.4
+        const expectedFloored = Math.floor(attackFloored - defence)
+        const damageFloored = physicalDamage(attackFloored, defence, buff)
+        expect(damageFloored).toBe(expectedFloored)
+
+        const attackCeiled = 500.5
+        const expectedCeiled = Math.ceil(attackCeiled - defence)
+        const damageCeiled = physicalDamage(attackCeiled, defence, buff)
+        expect(damageCeiled).toBe(expectedCeiled)
       })
     })
 
@@ -28,6 +41,20 @@ describe('物理ダメージ計算', () => {
         const buff = createDamageBuff({ percentageIncrease })
         const damage = physicalDamage(attack, defence, buff)
         expect(damage).toBe(expected)
+      })
+
+      it('小数点以下は四捨五入される', () => {
+        const percentageIncreaseFloored = 1.04
+        const expectedFloored = Math.floor((attack - defence) * percentageIncreaseFloored)
+        const buffFloored = createDamageBuff({ percentageIncrease: percentageIncreaseFloored })
+        const damageFloored = physicalDamage(attack, defence, buffFloored)
+        expect(damageFloored).toBe(expectedFloored)
+
+        const percentageIncreaseCeiled = 1.05
+        const expectedCeiled = Math.ceil((attack - defence) * percentageIncreaseCeiled)
+        const buffCeiled = createDamageBuff({ percentageIncrease: percentageIncreaseCeiled })
+        const damageCeiled = physicalDamage(attack, defence, buffCeiled)
+        expect(damageCeiled).toBe(expectedCeiled)
       })
     })
   })
