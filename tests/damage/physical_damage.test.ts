@@ -1,4 +1,4 @@
-import { physicalDamage, DamageBuff } from '../../src/damage'
+import { physicalDamage, DamageBuff, minimumDamage } from '../../src/damage'
 
 describe('物理ダメージ計算', () => {
   const createDamageBuff = (buff: Partial<DamageBuff>): DamageBuff => {
@@ -8,7 +8,7 @@ describe('物理ダメージ計算', () => {
     }
   }
 
-  describe('ダメージが攻撃力の5%以上になる場合', () => {
+  describe('計算結果が最低ダメージ以上になる場合', () => {
     const attack = 500
     const defence = 300
 
@@ -36,14 +36,14 @@ describe('物理ダメージ計算', () => {
     testcase      | partialBuff
     ${'バフなし'} | ${{}}
     ${'バフあり'} | ${{ percentageIncrease: 1.2 }}
-  `('ダメージが攻撃力の5%未満になる場合', ({ testcase, partialBuff }) => {
+  `('計算結果が最低ダメージを下回る場合', ({ testcase, partialBuff }) => {
     const attack = 500
     const defence = 500
     const buff = createDamageBuff(partialBuff)
 
     describe(`${testcase}だった場合`, () => {
-      it('攻撃力の5%がダメージになる', () => {
-        const expected = attack / 20
+      it('最低ダメージになる', () => {
+        const expected = minimumDamage(attack)
         const damage = physicalDamage(attack, defence, buff)
         expect(damage).toBe(expected)
       })
