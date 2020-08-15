@@ -30,7 +30,7 @@ describe('防御力デバフの計算', () => {
 
   describe('割合デバフ', () => {
     it('基礎値に割合減算される', () => {
-      const percentageSubtraction = 1.3
+      const percentageSubtraction = 0.3
       const debuff = createDefenceDebuff({ percentageSubtraction })
       const defence = debuffedDefence(defenceBase, debuff)
       const expected = defenceBase * (1 - percentageSubtraction)
