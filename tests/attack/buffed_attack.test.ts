@@ -1,6 +1,6 @@
 import { buffedAttack, AttackBuff } from '../../src/attack'
 
-describe('最終攻撃力の計算', () => {
+describe('攻撃力バフの計算', () => {
   const attackBase = 500
   const createAttackBuff = (buff: Partial<AttackBuff> = {}): AttackBuff => {
     return {

@@ -1,6 +1,6 @@
 import { DefenceBuff, buffedDefence } from '../../src/defence'
 
-describe('最終防御力の計算', () => {
+describe('防御力バフの計算', () => {
   const deefnceBase = 400
   const createDefenceBuff = (buff: Partial<DefenceBuff>): DefenceBuff => {
     return {
