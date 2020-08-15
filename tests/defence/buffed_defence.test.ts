@@ -1,6 +1,6 @@
-import { DefenceBuff, buffedDefenceValue } from '../../src/defence'
+import { DefenceBuff, buffedDefence } from '../../src/defence'
 
-describe('最終防御力の計算', () => {
+describe('防御力バフの計算', () => {
   const deefnceBase = 400
   const createDefenceBuff = (buff: Partial<DefenceBuff>): DefenceBuff => {
     return {
@@ -13,7 +13,7 @@ describe('最終防御力の計算', () => {
   describe('バフなしの場合', () => {
     it('基礎値がそのまま防御力になる', () => {
       const buff = createDefenceBuff({})
-      const attack = buffedDefenceValue(deefnceBase, buff)
+      const attack = buffedDefence(deefnceBase, buff)
       expect(attack).toBe(deefnceBase)
     })
   })
@@ -22,7 +22,7 @@ describe('最終防御力の計算', () => {
     it('基礎値に加算される', () => {
       const fixedAddition = 200
       const buff = createDefenceBuff({ fixedAddition })
-      const defence = buffedDefenceValue(deefnceBase, buff)
+      const defence = buffedDefence(deefnceBase, buff)
       expect(defence).toBe(deefnceBase + fixedAddition)
     })
   })
@@ -31,7 +31,7 @@ describe('最終防御力の計算', () => {
     it('基礎値に割合加算される', () => {
       const percentageAddition = 1.3
       const buff = createDefenceBuff({ percentageAddition })
-      const defence = buffedDefenceValue(deefnceBase, buff)
+      const defence = buffedDefence(deefnceBase, buff)
       expect(defence).toBe(deefnceBase * percentageAddition)
     })
   })
@@ -47,7 +47,7 @@ describe('最終防御力の計算', () => {
         fixedAddition,
         percentageAddition,
       }
-      const defence = buffedDefenceValue(defenceBase, buff)
+      const defence = buffedDefence(defenceBase, buff)
       expect(defence).toBe(expected)
     })
   })
