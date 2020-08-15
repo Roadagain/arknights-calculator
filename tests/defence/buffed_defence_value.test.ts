@@ -39,13 +39,16 @@ describe('最終防御力の計算', () => {
   describe('固定値バフと割合バフの両方がある場合', () => {
     it('固定値が加算された後割合加算される', () => {
       const defenceBase = 792 // クオーラ 昇進2Lv80 信頼度ボーナス・潜在強化込み
+      const fixedAddition = 65 // 黒き悪魔の加護 昇進2 潜在強化込み
+      const percentageAddition = 2.3 + 1.12 // シェルガード 特化3 + 防御エキスパート 昇進2
+      const expected = (defenceBase + fixedAddition) * percentageAddition // 一歩も引かないよ！
+
       const buff: DefenceBuff = {
-        fixedAddition: 65, // 黒き悪魔の加護 昇進2 潜在強化込み
-        percentageAddition: 2.3 + 1.12, // シェルガード 特化3 + 防御エキスパート 昇進2
+        fixedAddition,
+        percentageAddition,
       }
       const defence = buffedDefenceValue(defenceBase, buff)
-      const expected = (defenceBase + buff.fixedAddition) * buff.percentageAddition
-      expect(defence).toBe(expected) // 一歩も引かないよ！
+      expect(defence).toBe(expected)
     })
   })
 })
