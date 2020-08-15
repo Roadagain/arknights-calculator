@@ -21,47 +21,51 @@ describe('最終攻撃力の計算', () => {
   })
 
   describe.each`
-    buffName             | buff                                        | expected
-    ${'攻撃力にnを加算'} | ${createAttackBuff({ fixedAddition: 200 })} | ${700}
+    buffName             | buff                      | expected
+    ${'攻撃力にnを加算'} | ${{ fixedAddition: 200 }} | ${700}
   `('加算バフ', ({ buffName, buff, expected }) => {
     it(`${buffName} は基礎値に加算される`, () => {
-      const attack = buffedAttackValue(attackBase, buff)
+      const attackBuff = createAttackBuff(buff)
+      const attack = buffedAttackValue(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
 
   describe.each`
-    buffName                  | buff                                             | expected
-    ${'攻撃力+n%'}            | ${createAttackBuff({ percentageAddition: 1.5 })} | ${750}
-    ${'攻撃力のn%のダメージ'} | ${createAttackBuff({ damageIncrease: 1.5 })}     | ${750}
-    ${'攻撃力がn%まで上昇'}   | ${createAttackBuff({ attackIncrease: 1.5 })}     | ${750}
+    buffName                  | buff                           | expected
+    ${'攻撃力+n%'}            | ${{ percentageAddition: 1.5 }} | ${750}
+    ${'攻撃力のn%のダメージ'} | ${{ damageIncrease: 1.5 }}     | ${750}
+    ${'攻撃力がn%まで上昇'}   | ${{ attackIncrease: 1.5 }}     | ${750}
   `('割合バフ', ({ buffName, buff, expected }) => {
     it(`${buffName} は基礎値に割合加算される`, () => {
-      const attack = buffedAttackValue(attackBase, buff)
+      const attackBuff = createAttackBuff(buff)
+      const attack = buffedAttackValue(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
 
   describe.each`
-    buffNameA            | buffNameB      | buff                                                                 | expected
-    ${'攻撃力にnを加算'} | ${'攻撃力+n%'} | ${createAttackBuff({ fixedAddition: 200, percentageAddition: 1.5 })} | ${950}
+    buffNameA            | buffNameB      | buff                                               | expected
+    ${'攻撃力にnを加算'} | ${'攻撃力+n%'} | ${{ fixedAddition: 200, percentageAddition: 1.5 }} | ${950}
   `('加算されるバフの組み合わせ', ({ buffNameA, buffNameB, buff, expected }) => {
     it(`${buffNameA} と ${buffNameB} は加算される`, () => {
-      const attack = buffedAttackValue(attackBase, buff)
+      const attackBuff = createAttackBuff(buff)
+      const attack = buffedAttackValue(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
 
   describe.each`
-    buffNameA                 | buffNameB                 | buff                                                                  | expected
-    ${'攻撃力にnを加算'}      | ${'攻撃力のn%のダメージ'} | ${createAttackBuff({ fixedAddition: 200, damageIncrease: 1.5 })}      | ${1050}
-    ${'攻撃力にnを加算'}      | ${'攻撃力がn%まで上昇'}   | ${createAttackBuff({ fixedAddition: 200, attackIncrease: 1.5 })}      | ${1050}
-    ${'攻撃力+n%'}            | ${'攻撃力のn%のダメージ'} | ${createAttackBuff({ percentageAddition: 1.5, damageIncrease: 1.5 })} | ${1125}
-    ${'攻撃力+n%'}            | ${'攻撃力がn%まで上昇'}   | ${createAttackBuff({ percentageAddition: 1.5, attackIncrease: 1.5 })} | ${1125}
-    ${'攻撃力のn%のダメージ'} | ${'攻撃力がn%まで上昇'}   | ${createAttackBuff({ damageIncrease: 1.5, attackIncrease: 1.5 })}     | ${1125}
+    buffNameA                 | buffNameB                 | buff                                                | expected
+    ${'攻撃力にnを加算'}      | ${'攻撃力のn%のダメージ'} | ${{ fixedAddition: 200, damageIncrease: 1.5 }}      | ${1050}
+    ${'攻撃力にnを加算'}      | ${'攻撃力がn%まで上昇'}   | ${{ fixedAddition: 200, attackIncrease: 1.5 }}      | ${1050}
+    ${'攻撃力+n%'}            | ${'攻撃力のn%のダメージ'} | ${{ percentageAddition: 1.5, damageIncrease: 1.5 }} | ${1125}
+    ${'攻撃力+n%'}            | ${'攻撃力がn%まで上昇'}   | ${{ percentageAddition: 1.5, attackIncrease: 1.5 }} | ${1125}
+    ${'攻撃力のn%のダメージ'} | ${'攻撃力がn%まで上昇'}   | ${{ damageIncrease: 1.5, attackIncrease: 1.5 }}     | ${1125}
   `('乗算されるバフの組み合わせ', ({ buffNameA, buffNameB, buff, expected }) => {
     it(`${buffNameA} と ${buffNameB} は乗算される`, () => {
-      const attack = buffedAttackValue(attackBase, buff)
+      const attackBuff = createAttackBuff(buff)
+      const attack = buffedAttackValue(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
