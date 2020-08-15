@@ -43,7 +43,7 @@ describe('防御力デバフの計算', () => {
       const defenceBase = 2000 // 凶悪クラッシャー
       const fixedSubtraction = 300 // 爆炎 特化III
       const percentageSubtraction = 0.6 // カランドの威圧 特化III
-      const expected = (defenceBase - fixedSubtraction) * (1 - percentageSubtraction)
+      const expected = (defenceBase - fixedSubtraction) * (1 - percentageSubtraction) // 聖なる鈴の音に、その鎧は朽ち果てる
 
       const debuff: DefenceDebuff = {
         fixedSubtraction,
