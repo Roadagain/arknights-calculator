@@ -5,7 +5,7 @@ export type AttackBuff = {
   readonly attackIncrease: number
 }
 
-export const buffedAttackValue = (base: number, buff: AttackBuff): number => {
+export const buffedAttack = (base: number, buff: AttackBuff): number => {
   const { fixedAddition, percentageAddition, damageIncrease, attackIncrease } = buff
   return (base * percentageAddition + fixedAddition) * damageIncrease * attackIncrease
 }

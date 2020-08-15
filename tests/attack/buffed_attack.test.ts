@@ -1,4 +1,4 @@
-import { buffedAttackValue, AttackBuff } from '../../src/attack'
+import { buffedAttack, AttackBuff } from '../../src/attack'
 
 describe('最終攻撃力の計算', () => {
   const attackBase = 500
@@ -15,7 +15,7 @@ describe('最終攻撃力の計算', () => {
   describe('バフなしの場合', () => {
     it('基礎値がそのまま攻撃力になる', () => {
       const buff = createAttackBuff()
-      const attack = buffedAttackValue(attackBase, buff)
+      const attack = buffedAttack(attackBase, buff)
       expect(attack).toBe(attackBase)
     })
   })
@@ -26,7 +26,7 @@ describe('最終攻撃力の計算', () => {
   `('加算バフ', ({ buffName, buff, expected }) => {
     it(`${buffName} は基礎値に加算される`, () => {
       const attackBuff = createAttackBuff(buff)
-      const attack = buffedAttackValue(attackBase, attackBuff)
+      const attack = buffedAttack(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
@@ -39,7 +39,7 @@ describe('最終攻撃力の計算', () => {
   `('割合バフ', ({ buffName, buff, expected }) => {
     it(`${buffName} は基礎値に割合加算される`, () => {
       const attackBuff = createAttackBuff(buff)
-      const attack = buffedAttackValue(attackBase, attackBuff)
+      const attack = buffedAttack(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
@@ -50,7 +50,7 @@ describe('最終攻撃力の計算', () => {
   `('加算されるバフの組み合わせ', ({ buffNameA, buffNameB, buff, expected }) => {
     it(`${buffNameA} と ${buffNameB} は加算される`, () => {
       const attackBuff = createAttackBuff(buff)
-      const attack = buffedAttackValue(attackBase, attackBuff)
+      const attack = buffedAttack(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
@@ -65,7 +65,7 @@ describe('最終攻撃力の計算', () => {
   `('乗算されるバフの組み合わせ', ({ buffNameA, buffNameB, buff, expected }) => {
     it(`${buffNameA} と ${buffNameB} は乗算される`, () => {
       const attackBuff = createAttackBuff(buff)
-      const attack = buffedAttackValue(attackBase, attackBuff)
+      const attack = buffedAttack(attackBase, attackBuff)
       expect(attack).toBe(expected)
     })
   })
@@ -85,7 +85,7 @@ describe('最終攻撃力の計算', () => {
         damageIncrease,
         attackIncrease,
       }
-      const attack = buffedAttackValue(attackBase, buff)
+      const attack = buffedAttack(attackBase, buff)
       expect(attack).toBe(expected)
     })
   })
