@@ -12,7 +12,7 @@ describe('物理ダメージ計算', () => {
     const attack = 550
     const defence = 300
 
-    describe('バフなしだった場合', () => {
+    describe('バフなしの場合', () => {
       const buff = createDamageBuff({})
 
       it('攻撃力-防御力 がダメージになる', () => {
@@ -34,7 +34,7 @@ describe('物理ダメージ計算', () => {
       })
     })
 
-    describe('バフありだった場合', () => {
+    describe('バフありの場合', () => {
       it('(攻撃力-防御力)*ダメージバフ がダメージになる', () => {
         const percentageIncrease = 1.3
         const expected = (attack - defence) * percentageIncrease
@@ -68,7 +68,7 @@ describe('物理ダメージ計算', () => {
     const defence = 500
     const buff = createDamageBuff(partialBuff)
 
-    describe(`${testcase}だった場合`, () => {
+    describe(`${testcase}の場合`, () => {
       it('最低ダメージになる', () => {
         const expected = minimumDamage(attack)
         const damage = physicalDamage(attack, defence, buff)

@@ -12,7 +12,7 @@ describe('術ダメージ計算', () => {
     const attack = 550
     const artsDefence = 40
 
-    describe('バフなしだった場合', () => {
+    describe('バフなしの場合', () => {
       const buff = createDamageBuff({})
 
       it('攻撃力*(1-術耐性/100) がダメージになる', () => {
@@ -34,7 +34,7 @@ describe('術ダメージ計算', () => {
       })
     })
 
-    describe('バフありだった場合', () => {
+    describe('バフありの場合', () => {
       it('攻撃力*(1-術耐性/100)*ダメージバフ がダメージになる', () => {
         const percentageIncrease = 1.3
         const expected = attack * (1 - artsDefence / 100) * percentageIncrease
@@ -68,7 +68,7 @@ describe('術ダメージ計算', () => {
     const artsDefence = 100
     const buff = createDamageBuff(partialBuff)
 
-    describe(`${testcase}だった場合`, () => {
+    describe(`${testcase}の場合`, () => {
       it('最低ダメージになる', () => {
         const expected = minimumDamage(attack)
         const damage = artsDamage(attack, artsDefence, buff)
