@@ -21,6 +21,7 @@ const AttackBuff: React.FC = () => {
         <NamedBuffList
           name="攻撃力+n%"
           buffType="percentage"
+          isZeroBase
           buffs={percentageAdditions}
           onChange={setPercentageAdditions}
         />
