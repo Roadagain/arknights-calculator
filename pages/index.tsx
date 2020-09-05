@@ -1,10 +1,10 @@
 import React from 'react'
-import AttackBuff from '../components/AttackBuff'
+import AttackCalculator from '../components/AttackCalculator'
 
 const index: React.FC = () => (
   <main>
     <p>アークナイツ計算機</p>
-    <AttackBuff />
+    <AttackCalculator />
   </main>
 )
 
