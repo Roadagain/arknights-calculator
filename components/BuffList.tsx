@@ -24,7 +24,7 @@ const BuffList: React.FC<Props> = ({ buffType, buffs, onChange }: Props) => {
   }
 
   return (
-    <Grid container direction="column" spacing={2}>
+    <Grid container direction="column" alignItems="center" spacing={2}>
       {buffs.map((buff, index) => {
         const onChangeValue = (newBuff: number) => onChangeByIndex(newBuff, index)
         const onRemoveItem = () => onRemove(index)
@@ -41,7 +41,9 @@ const BuffList: React.FC<Props> = ({ buffType, buffs, onChange }: Props) => {
           </Grid>
         )
       })}
-      <AddButton onClick={onAdd} />
+      <Grid item>
+        <AddButton onClick={onAdd} />
+      </Grid>
     </Grid>
   )
 }
