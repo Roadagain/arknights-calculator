@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import AddButton from './AddButton'
-import PercentageForm from './PercentageForm'
+import NumberForm from './NumberForm'
 import RemoveButton from './RemoveButton'
 
 type Props = {
@@ -32,7 +32,7 @@ const BuffList: React.FC<Props> = ({ buffType, buffs, onChange }: Props) => {
           <Grid item key={index}>
             <Grid container spacing={2}>
               <Grid item xs={9}>
-                <PercentageForm value={buff} isPercentage={buffType === 'percentage'} onChange={onChangeValue} />
+                <NumberForm value={buff} isPercentage={buffType === 'percentage'} onChange={onChangeValue} />
               </Grid>
               <Grid item xs={3}>
                 <RemoveButton onClick={onRemoveItem} />
