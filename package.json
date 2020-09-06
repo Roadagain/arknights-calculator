@@ -6,6 +6,8 @@
   "author": "Roadagain <ringoh72@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "next": "^9.5.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -27,6 +29,7 @@
   },
   "scripts": {
     "lint": "eslint --ext .js,.ts,.jsx,.tsx .",
-    "test": "jest"
+    "test": "jest",
+    "dev": "next"
   }
 }
